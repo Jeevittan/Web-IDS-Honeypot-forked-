@@ -1,12 +1,32 @@
 #!/bin/bash
-echo -e "\nQeeqBox Chameleon starter script -> https://github.com/qeeqbox/Chameleon"
-echo -e "Current servers (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCK5, TELNET and Postgres)\n"\
+echo -e "\n\n\n	  	 _    _                                                  _       _____   _____     _____ "
+echo -e "		| |  | |                                                | |     |_   _| |  __ \   / ____|"
+echo -e "		| |__| |   ___    _ __     ___   _   _   _ __     ___   | |_      | |   | |  | | | (___"  
+echo -e "		|  __  |  / _ \  | '_ \   / _ \ | | | | | '_ \   / _ \  | __|     | |   | |  | |  \___ \ "
+echo -e "		| |  | | | (_) | | | | | |  __/ | |_| | | |_) | | (_) | | |_     _| |_  | |__| |  ____) |"
+echo -e "		|_|  |_|  \___/  |_| |_|  \___|  \__, | | .__/   \___/   \__|   |_____| |_____/  |_____/ "
+echo -e "		                                  __/ | | |                                              "
+echo -e "		                                 |___/  |_|                                             " 
 
+echo -e "\n					CST 338 NETWORK AND COMMUNICATION SECURITY"
+echo -e "\n							TEAM MEMBERS"
+echo -e "\n							1. JEEVITTAN
+         \n							2. MITHIIRAN
+	 \n							3. AMSYAR BIN ZURAIDY"
+
+echo -e "\n\nThis is an open source honeypot by qeeqBox. We integrated honeypot with grafana dashboard.\n"
+echo -e "Current servers (DNS, HTTP Proxy, HTTP, HTTPS, SSH, POP3, IMAP, STMP, RDP, VNC, SMB, SOCK5, TELNET and Postgres)\n"
+echo ""
+
+read -s -n 1 -p "Press any key to deploy honeypot .  .  ."
+
+#CHECK PERMISSION
 if [[ $EUID -ne 0 ]]; then
    echo "You have to run this script with higher privileges" 
    exit 1
 fi
 
+#UPDATE SYSTEM AND INSTALL REQUIREMENTS
 echo "[x] System updating"
 apt-get update -y
 echo "[x] Install requirements"
@@ -38,11 +58,12 @@ setup_requirements () {
 	which docker && echo "Good"
 }
 
+#SETTING UP WEB INTERFACE WITH LOCALHOST PORT
 wait_on_web_interface () {
-until $(curl --silent --head --fail http://localhost:3000 --output /dev/null); do
+until $(curl --silent --head --fail http://localhost:8000 --output /dev/null); do
 sleep 5
 done
-xdg-open http://localhost:3000
+xdg-open http://localhost:8000
 }
 
 test_project () {
